@@ -2,21 +2,11 @@
 
 ## テーブル定義
 
-### users（ユーザー）
-
-| 項目名 | 説明 |
-|---|---|
-| user_id | 自動で振られる番号（主キー） |
-| email | メールアドレス（ログインに使用） |
-| password_hash | ハッシュ化されたパスワード |
-| name | 表示用の名前 |
-
 ### tasks（タスク）
 
 | 項目名 | 説明 |
 |---|---|
 | task_id | 自動で振られる番号（主キー） |
-| user_id | このタスクを作った人（usersと紐づく） |
 | title | タスクの名前 |
 | due_date | 締め切り日時 |
 | estimated_minutes | 所要時間 |
@@ -40,16 +30,37 @@
 
 ## ER図（テーブル同士の関係）
 
-- users（1）─（多）tasks：1人のユーザーは複数のタスクを持てる
 - tags（1）─（多）tasks：1つのタグは複数のタスクに使われる
 - statuses（1）─（多）tasks：1つの状態は複数のタスクに使われる
 
 \`\`\`
-users ──1───多── tasks ──多───1── tags
-                    │
-                   多
-                    │
-                    1
-                    │
-                statuses
+tags ──1───多── tasks ──多───1── statuses
 \`\`\`
+
+## テーブル定義
+
+### tasks（タスク）
+
+| 項目名 | 型 | 制約 | 説明 |
+|---|---|---|---|
+| task_id | INT | PRIMARY KEY | 自動で振られる番号 |
+| title | VARCHAR | NOT NULL | タスクの名前 |
+| due_date | DATETIME | NOT NULL | 締め切り日時 |
+| estimated_minutes | INT | | 所要時間（分） |
+| tag_id | INT | NOT NULL | タグ（tagsと紐づく） |
+| status_id | INT | | 状態（statusesと紐づく） |
+| progress | INT | | 進捗率（0〜100%） |
+
+### tags（タグ）
+
+| 項目名 | 型 | 制約 | 説明 |
+|---|---|---|---|
+| tag_id | INT | PRIMARY KEY | 自動で振られる番号 |
+| name | VARCHAR | NOT NULL | タグ名 |
+
+### statuses（状態）
+
+| 項目名 | 型 | 制約 | 説明 |
+|---|---|---|---|
+| status_id | INT | PRIMARY KEY | 自動で振られる番号 |
+| name | VARCHAR | NOT NULL | 状態名 |
