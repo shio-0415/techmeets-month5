@@ -14,38 +14,38 @@
 ### POST /tasks（タスクを作成する）
 
 リクエスト:
-\`\`\`json
+```json
 {
   "title": "牛乳を買う",
   "due_date": "2025-12-01"
 }
-\`\`\`
+```
 
 レスポンス:
-\`\`\`json
+```json
 {
   "task_id": 1,
   "title": "牛乳を買う",
   "due_date": "2025-12-01",
   "completed": false
 }
-\`\`\`
+```
 
 ### PUT /tasks/{task_id}（タスクを完了にする例）
 
 リクエスト:
-\`\`\`json
+```json
 {
   "completed": true
 }
-\`\`\`
+```
 
 レスポンス:
-\`\`\`json
+```json
 {
   "task_id": 1,
   "title": "牛乳を買う",
   "due_date": "2025-12-01",
   "completed": true
 }
-\`\`\`
+```
